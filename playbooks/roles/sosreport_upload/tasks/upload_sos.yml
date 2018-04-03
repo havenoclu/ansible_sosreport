@@ -2,7 +2,7 @@
 
     - name: locate sosreports to attach
       find:
-        paths: /root/sosreports/{{ case_id }}/{{ run_id }}
+        paths: "{{ sos_dest_root }}/{{ case_id }}/{{ run_id }}"
         patterns: sosreport-*.tar.xz
       register: sosreports
 

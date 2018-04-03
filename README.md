@@ -7,8 +7,9 @@ These playbooks allow you to run sosreports on defined inventory and optionally 
 
 1) **case_id**: Red Hat support case number
 2) **run_id**: Run number (you make this up and iterate as additional runs for the same case are executed)
-3) **rhn_user**: Red Hat Customer Portal user (required to upload reports to case)
-4) **rhn_pass**: Red Hat Customer Portal password (required to upload reports to case)
+3) **sos_dest_root**: The directory you wish to copy sosreports to (directories will be created under this root according to specidfied `case_id` and `run_id`).
+4) **rhn_user**: Red Hat Customer Portal user (required to upload reports to case)
+5) **rhn_pass**: Red Hat Customer Portal password (required to upload reports to case)
 
 **NOTE:** On the initial run of `redhat-support-tool`, you are prompted to enter your Red Hat Customer Portal user id and password and asked if you would like to save it to ~/.redhat-support-tool/redhat-support-tool.conf. If this file is available and populated correctly on the node set to upload the reports, the sosreport_upload playbook will attempt to use that file for authentication and specifying the `{{ rhn_user }}` and `{{ rhn_pass }}` variables explicitly is not necessary. It is advised to use the redhat-support-tool.conf method as the password is stored in a hashed form within the file and safer than passing rhn_pass as a variable on the command line.
 
@@ -25,7 +26,6 @@ Same as above, but specify Red Hat Customer Portal username and password variabl
 
 ### TODO
 
-- Make the sosreport destination root path a variable - maybe: `{{ sos_dest_root }}`
 - Make the sosreport fetch destination host a variable - maybe: `{{ sos_dest_host }}`
 - Add an encrypted secrets file (Ansible Vault?) to pass Red Hat Customer Portal passwords securely.
 - Other stuff

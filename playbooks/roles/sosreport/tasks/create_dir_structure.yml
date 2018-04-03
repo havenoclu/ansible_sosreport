@@ -7,19 +7,19 @@
     - name: check for local case directory
       local_action:
         module: stat
-        path: /root/sosreports/{{ case_id }}
+        path: "{{ sos_dest_root }}/{{ case_id }}"
       register: case_path
 
     - name: check for local run directory
       local_action:
         module: stat
-        path: /root/sosreports/{{ case_id }}/{{ run_id }}
+        path: "{{ sos_dest_root }}/{{ case_id }}/{{ run_id }}"
       register: run_path
 
     - name: check for existing sosreports in run_path
       local_action:
         module: find
-        paths: /root/sosreports/{{ case_id }}/{{ run_id }}
+        paths: "{{ sos_dest_root }}/{{ case_id }}/{{ run_id }}"
         patterns: sosreport-*
       register: old_sosreports2
       when: run_path.stat.exists
@@ -33,13 +33,13 @@
       when: run_path.stat.exists
 
     - name: create case directory if not existing
-      local_action: command mkdir /root/sosreports/{{ case_id }}
+      local_action: command mkdir "{{ sos_dest_root }}/{{ case_id }}"
       run_once: true
       when: not case_path.stat.exists
 
     - name: create run directory if not existing
       local_action:
         module: file
-        path: /root/sosreports/{{ case_id }}/{{ run_id }}
+        path: "{{ sos_dest_root }}/{{ case_id }}/{{ run_id }}"
         state: directory
       when: not run_path.stat.exists
