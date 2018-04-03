@@ -2,7 +2,7 @@
 
 ### What is it?
 
-These playbooks allow you to run sosreports on defined inventory and optionally upload the reports to a specified Red Hat support case. The current focus and testing is performed on major Red Hat Enterprise Linux releases, but should work on other distributions that support `sos`.
+These Ansible playbooks allow you to run sosreports on defined inventory and optionally upload the reports to a specified Red Hat support case. The current focus and testing is performed on major Red Hat Enterprise Linux releases, but should work on other distributions that support `sos`.
 
 ### Variables to define
 
