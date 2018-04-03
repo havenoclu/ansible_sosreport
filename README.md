@@ -12,7 +12,7 @@ These Ansible playbooks allow you to run sosreports on defined inventory and opt
 4) **rhn_user**: Red Hat Customer Portal user (required to upload reports to case)
 5) **rhn_pass**: Red Hat Customer Portal password (required to upload reports to case)
 
-**NOTE:** On the initial run of `redhat-support-tool`, you are prompted to enter your Red Hat Customer Portal user id and password and asked if you would like to save it to ~/.redhat-support-tool/redhat-support-tool.conf. If this file is available and populated correctly on the node set to upload the reports, the sosreport_upload playbook will attempt to use that file for authentication and specifying the `{{ rhn_user }}` and `{{ rhn_pass }}` variables explicitly is not necessary. It is advised to use the redhat-support-tool.conf method as the password is stored in a hashed form within the file and safer than passing rhn_pass as a variable on the command line.
+**NOTE:** On the initial run of `redhat-support-tool`, you are prompted to enter your Red Hat Customer Portal user id and password and asked if you would like to save it to ~/.redhat-support-tool/redhat-support-tool.conf. If this file is available and populated correctly on the node set to upload the reports, the sosreport_upload playbook will attempt to use that file for authentication and specifying the `{{ rhn_user }}` and `{{ rhn_pass }}` variables explicitly is not necessary. It is advised to use the redhat-support-tool.conf method as the password is stored in a hashed form within the file and safer than passing rhn_pass as a variable on the command line. Another option may be to set the variables in a file and use ansible-vault to secure them.
 
 ### Examples
 
@@ -66,9 +66,3 @@ Same as above, but specify Red Hat Customer Portal username and password variabl
              |              |     |              |
              |              |     |              |
              +--------------+     +--------------+
-
-### TODO
-
-- Make the sosreport fetch destination host a variable - maybe: `{{ sos_dest_host }}`
-- Add an encrypted secrets file (Ansible Vault?) to pass Red Hat Customer Portal passwords securely.
-- Other stuff
