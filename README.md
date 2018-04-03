@@ -7,7 +7,7 @@ These playbooks allow you to run sosreports on defined inventory and optionally 
 
 1) **case_id**: Red Hat support case number
 2) **run_id**: Run number (you make this up and iterate as additional runs for the same case are executed)
-3) **sos_dest_root**: The directory you wish to copy sosreports to (directories will be created under this root according to specidfied `case_id` and `run_id`).
+3) **sos_dest_root**: The directory you wish to copy sosreports to (directories will be created under this root according to specified `case_id` and `run_id`).
 4) **rhn_user**: Red Hat Customer Portal user (required to upload reports to case)
 5) **rhn_pass**: Red Hat Customer Portal password (required to upload reports to case)
 
