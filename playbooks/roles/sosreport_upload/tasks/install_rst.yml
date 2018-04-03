@@ -4,3 +4,4 @@
       yum:
         name: redhat-support-tool
         state: latest
+      become: yes

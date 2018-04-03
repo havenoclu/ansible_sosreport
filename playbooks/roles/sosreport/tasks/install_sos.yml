@@ -4,3 +4,4 @@
       yum:
         name: sos
         state: latest
+      become: yes
