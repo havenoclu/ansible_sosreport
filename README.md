@@ -25,6 +25,48 @@ Same as above, but upload to specified Red Hat support case (using file-based au
 Same as above, but specify Red Hat Customer Portal username and password variables for upload purposes:
 - `$ ansible-playbook sosreport.yml -e case_id=01234567 -e run_id=1 -e rhn_user=username -e rhn_pass=secret -e sos_dest_root=/root/sosreports`
 
+### Basic Flow
+
+                        +--------------+
+                        |              |
+                        |              |
+                        | Red Hat Case |
+                        |              |
+                        |              |
+                        |              |
+                        +------+-------+
+                               ^
+                               |
+                               |3. Upload
+                               |Sosreports
+                               |
+                               |
+                        +------+-------+
+                        |              |
+                        |  Ansible     |
+                        |  Controller  |
+                        |              |
+              +---------+              +--------+
+              |         |              |        |
+              |         +--+-------+---+        |
+              |            ^       ^            |
+     1. Run   |            |       |            |1. Run
+     Sosreport|            |2. Fetch            |Sosreport
+              |            |Sosreport           |
+              |            |       |            |
+              |            |       |            |
+              |            |       |            |
+              v            |       |            v
+                           |       |
+             +-------------++     ++-------------+
+             |              |     |              |
+             |  Ansible     |     |  Ansible     |
+             |  Client      |     |  Client      |
+             |              |     |              |
+             |              |     |              |
+             |              |     |              |
+             +--------------+     +--------------+
+
 ### TODO
 
 - Make the sosreport fetch destination host a variable - maybe: `{{ sos_dest_host }}`
