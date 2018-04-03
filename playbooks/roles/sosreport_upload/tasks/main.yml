@@ -1,0 +1,7 @@
+- import_tasks: upload_variable_check.yml
+
+- import_tasks: auth_check.yml
+
+- import_tasks: install_rst.yml
+
+- import_tasks: upload_sos.yml

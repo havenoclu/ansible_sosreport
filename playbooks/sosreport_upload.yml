@@ -1,0 +1,4 @@
+- hosts: "{{ upload_host_var | default('localhost') }}"
+  tasks:
+  - include_role:
+      name: sosreport
