@@ -52,7 +52,7 @@ Same as above, but specify Red Hat Customer Portal username and password variabl
               |            ^       ^            |
      1. Run   |            |       |            |1. Run
      Sosreport|            |2. Fetch            |Sosreport
-              |            |Sosreport           |
+              |            |Sosreports          |
               |            |       |            |
               |            |       |            |
               |            |       |            |
