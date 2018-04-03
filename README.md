@@ -16,13 +16,13 @@ These playbooks allow you to run sosreports on defined inventory and optionally 
 ### Examples
 
 Run sosreports on specified inventory and fetch reports to cetralized location:
-- `$ ansible-playbook sosreport.yml -e case_id=01234567 -e run_id=1`
+- `$ ansible-playbook sosreport.yml -e case_id=01234567 -e run_id=1 -e sos_dest_root=/root/sosreports`
 
 Same as above, but upload to specified Red Hat support case (using file-based authentication):
-- `$ ansible-playbook sosreport.yml sosreport_upload.yml -e case_id=01234567 -e run_id=1`
+- `$ ansible-playbook sosreport.yml sosreport_upload.yml -e case_id=01234567 -e run_id=1 -e sos_dest_root=/root/sosreports`
 
 Same as above, but specify Red Hat Customer Portal username and password variables for upload purposes:
-- `$ ansible-playbook sosreport.yml -e case_id=01234567 -e run_id=1 -e rhn_user=username -e rhn_pass=secret`
+- `$ ansible-playbook sosreport.yml -e case_id=01234567 -e run_id=1 -e rhn_user=username -e rhn_pass=secret -e sos_dest_root=/root/sosreports`
 
 ### TODO
 
