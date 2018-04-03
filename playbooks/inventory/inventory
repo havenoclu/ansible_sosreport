@@ -1,5 +1,5 @@
 [localhost]
-ansible-tower.example.com
+ansible-controller.example.com
 
 [ansible-dev]
 ansible-client1.example.com
