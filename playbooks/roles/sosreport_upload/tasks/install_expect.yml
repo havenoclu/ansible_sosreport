@@ -1,0 +1,8 @@
+# install/update redhat-support-tool
+
+    - name: verify expect is installed and updated
+      yum:
+        name: expect
+        state: latest
+      become: yes
+      when: rst_auth.stat.exists == False

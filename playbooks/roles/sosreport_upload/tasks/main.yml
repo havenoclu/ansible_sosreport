@@ -4,4 +4,6 @@
 
 - import_tasks: install_rst.yml
 
+- import_tasks: install_expect.yml
+
 - import_tasks: upload_sos.yml
