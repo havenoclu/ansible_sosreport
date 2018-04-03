@@ -1,0 +1,13 @@
+# determine which authentication mechanism to use (stored file or secrets-driven)
+
+    - name: check for Red Hat Customer Portal authentication file
+      stat:
+        path: "{{ansible_env.HOME }}/.redhat-support-tool/redhat-support-tool.conf"
+      register: rst_auth
+
+    - name: determine if authentication information exists
+      fail: msg="You have no authentication information specified. Either run redhat-support-tool and choose to store authentication information into ~home/redhat-support-tool/redhat-support-tool.conf or define the external variables rhn_user and rhn_pass when executing the playbook"
+      when: rst_auth.stat.exists == False and vars[item] is undefined
+      with_items:
+        - rhn_user
+        - rhn_pass

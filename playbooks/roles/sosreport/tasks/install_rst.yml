@@ -1,0 +1,6 @@
+# install/update redhat-support-tool
+
+    - name: verify redhat-support-tool installed and updated
+      yum:
+        name: redhat-support-tool
+        state: latest

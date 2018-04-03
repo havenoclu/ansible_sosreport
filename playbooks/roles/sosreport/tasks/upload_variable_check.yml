@@ -1,0 +1,8 @@
+# ensure case_id and run_id are specified
+
+    - name: check for required variables
+      fail: msg="You are required to set {{ item }} ya dummy!"
+      when: vars[item] is undefined
+      with_items:
+        - case_id
+        - run_id

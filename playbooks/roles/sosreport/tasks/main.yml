@@ -1,0 +1,19 @@
+- import_tasks: run_variable_check.yml
+
+- import_tasks: install_sos.yml
+
+- import_tasks: cleanup_sos.yml
+
+- import_tasks: run_sos.yml
+
+- import_tasks: create_dir_structure.yml
+
+- import_tasks: fetch_sos.yml
+
+- import_tasks: upload_variable_check.yml
+
+- import_tasks: auth_check.yml
+
+- import_tasks: install_rst.yml
+
+- import_tasks: upload_sos.yml

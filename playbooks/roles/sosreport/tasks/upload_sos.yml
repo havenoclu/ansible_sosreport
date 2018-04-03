@@ -1,0 +1,29 @@
+# locate and upload sosreports to defined Red Hat support case
+
+    - name: locate sosreports to attach
+      find:
+        paths: /root/sosreports/{{ case_id }}/{{ run_id }}
+        patterns: sosreport-*.tar.xz
+      register: sosreports
+
+    - name: upload sosreports to specified case (file-based auth)
+      command: /usr/bin/redhat-support-tool addattachment -c {{ case_id }} -d {{ run_id }} {{ item.path }}
+      with_items: "{{ sosreports.files }}"
+      when: rst_auth.stat.exists == True
+
+    - name: configure auth (file-based auth does not exist)
+      shell: |
+        /usr/bin/redhat-support-tool config user {{ rhn_user }}
+        /usr/bin/expect -c "spawn /usr/bin/redhat-support-tool config password; sleep 2; expect -re \".*password.*\"; sleep 2; send \"{{ rhn_pass }}\r\"; interact"
+      when: rst_auth.stat.exists == False
+
+    - name: upload sosreports to specified case
+      shell: |
+        /usr/bin/redhat-support-tool addattachment -c {{ case_id }} -d {{ run_id }} {{ item.path }}
+      with_items: "{{ sosreports.files }}"
+      when: rst_auth.stat.exists == False
+
+    - name: cleanup auth
+      shell: |
+        /usr/bin/rm -f {{ ansible_env.HOME }}/.redhat-support-tool/redhat-support-tool.conf
+      when: rst_auth.stat.exists == False

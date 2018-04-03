@@ -1,0 +1,4 @@
+- hosts: "{{ host_var | default('ansible-dev') }}"
+  tasks:
+  - include_role:
+      name: sosreport

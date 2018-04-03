@@ -1,0 +1,45 @@
+# Ensure directory structure is available and clean
+
+    - name: identify new sosreports
+      shell: /usr/bin/find /var/tmp -maxdepth 1 -name sosreport-* -type f
+      register: new_sosreports
+
+    - name: check for local case directory
+      local_action:
+        module: stat
+        path: /root/sosreports/{{ case_id }}
+      register: case_path
+
+    - name: check for local run directory
+      local_action:
+        module: stat
+        path: /root/sosreports/{{ case_id }}/{{ run_id }}
+      register: run_path
+
+    - name: check for existing sosreports in run_path
+      local_action:
+        module: find
+        paths: /root/sosreports/{{ case_id }}/{{ run_id }}
+        patterns: sosreport-*
+      register: old_sosreports2
+      when: run_path.stat.exists
+
+    - name: clean up sosreports in run_path if necessary
+      local_action:
+        module: file
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ old_sosreports2.files }}"
+      when: run_path.stat.exists
+
+    - name: create case directory if not existing
+      local_action: command mkdir /root/sosreports/{{ case_id }}
+      run_once: true
+      when: not case_path.stat.exists
+
+    - name: create run directory if not existing
+      local_action:
+        module: file
+        path: /root/sosreports/{{ case_id }}/{{ run_id }}
+        state: directory
+      when: not run_path.stat.exists

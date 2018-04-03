@@ -1,0 +1,13 @@
+# cleans any sosreports located in /var/tmp on defined inventory
+
+    - name: locate old sosreports
+      find:
+        paths: /var/tmp
+        patterns: sosreport-*
+      register: old_sosreports
+
+    - name: delete old sosreports
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ old_sosreports.files }}"

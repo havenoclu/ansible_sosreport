@@ -1,0 +1,6 @@
+# Installs latest sos package
+
+    - name: install latest sos package
+      yum:
+        name: sos
+        state: latest
