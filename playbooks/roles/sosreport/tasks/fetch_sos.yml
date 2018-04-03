@@ -3,3 +3,4 @@
     - name: fetch new sosreports
       fetch: src={{ item }} dest="{{ sos_dest_root }}/{{ case_id }}/{{ run_id }}/" flat=yes
       with_items: "{{ new_sosreports.stdout_lines }}"
+      become: yes

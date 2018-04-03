@@ -11,3 +11,4 @@
         path: "{{ item.path }}"
         state: absent
       with_items: "{{ old_sosreports.files }}"
+      become: yes

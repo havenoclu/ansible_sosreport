@@ -1,4 +1,5 @@
 # run sosreport on defined inventory
 
     - name: run sosreport
-      command: sudo sosreport --batch --name={{ inventory_hostname }} --case-id={{ case_id }}
+      command: sosreport --batch --name={{ inventory_hostname }} --case-id={{ case_id }}
+      become: yes
