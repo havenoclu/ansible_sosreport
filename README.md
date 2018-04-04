@@ -2,7 +2,7 @@
 
 ### What is it?
 
-These Ansible playbooks allow you to run sosreports on defined inventory and optionally upload the reports to a specified Red Hat support case. The current focus and testing is performed on major Red Hat Enterprise Linux releases, but should work on other distributions that support `sos`.
+These Ansible playbooks allow you to run sosreports on defined inventory and optionally upload the reports to a specified Red Hat support case. The current focus and testing is performed on major Red Hat Enterprise Linux releases, but should work on other distributions that support `sos` (likely with tweaking based on things like the package manager).
 
 ### Variables to define
 
@@ -12,7 +12,7 @@ These Ansible playbooks allow you to run sosreports on defined inventory and opt
 4) **rhn_user**: Red Hat Customer Portal user (required to upload reports to case)
 5) **rhn_pass**: Red Hat Customer Portal password (required to upload reports to case)
 
-**NOTE:** On the initial run of `redhat-support-tool`, you are prompted to enter your Red Hat Customer Portal user id and password and asked if you would like to save it to ~/.redhat-support-tool/redhat-support-tool.conf. If this file is available and populated correctly on the node set to upload the reports, the sosreport_upload playbook will attempt to use that file for authentication and specifying the `{{ rhn_user }}` and `{{ rhn_pass }}` variables explicitly is not necessary. It is advised to use the redhat-support-tool.conf method as the password is stored in a hashed form within the file and safer than passing rhn_pass as a variable on the command line. Another option may be to set the variables in a file and use ansible-vault to secure them.
+**NOTE:** On the initial run of `redhat-support-tool`, you are prompted to enter your Red Hat Customer Portal user id and password and asked if you would like to save it to ~/.redhat-support-tool/redhat-support-tool.conf. If this file is available and populated correctly on the node set to upload the reports, the sosreport_upload playbook will attempt to use that file for authentication and specifying the `{{ rhn_user }}` and `{{ rhn_pass }}` variables explicitly is not necessary. It is advised to use the redhat-support-tool.conf method as the password is stored in a hashed form within the file and safer than passing `rhn_pass` as a variable on the command line. Another option may be to set the variables in a file and use ansible-vault to secure them.
 
 ### Examples
 
