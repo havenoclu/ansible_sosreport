@@ -16,7 +16,7 @@ These Ansible playbooks allow you to run sosreports on defined inventory and opt
 
 ### Examples
 
-Run sosreports on specified inventory and fetch reports to cetralized location:
+Run sosreports on specified inventory and fetch reports to centralized location:
 - `$ ansible-playbook sosreport.yml -e case_id=01234567 -e run_id=1 -e sos_dest_root=/root/sosreports`
 
 Same as above, but upload to specified Red Hat support case (using file-based authentication):
